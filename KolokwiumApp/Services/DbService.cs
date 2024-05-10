@@ -97,7 +97,7 @@ public class DbService(IConfiguration configuration) : IDbService
             bookCommand.Transaction = (SqlTransaction)transaction;
             bookCommand.Parameters.AddWithValue("@Title", bookDto.Title);
 
-            var bookId = (decimal)await bookCommand.ExecuteScalarAsync();
+            var bookId = Convert.ToInt32(await bookCommand.ExecuteScalarAsync());
 
             foreach (var genreId in bookDto.Genres)
             {
@@ -110,9 +110,8 @@ public class DbService(IConfiguration configuration) : IDbService
 
                 await genreBookCommand.ExecuteNonQueryAsync();
             }
-
             await transaction.CommitAsync();
-            return (int)bookId;
+            return bookId;
         }
         catch (Exception)
         {
