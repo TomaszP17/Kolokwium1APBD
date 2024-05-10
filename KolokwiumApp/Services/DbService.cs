@@ -55,7 +55,7 @@ public class DbService(IConfiguration configuration) : IDbService
                 bookDto = new GetBookDto(
                     reader.GetInt32(0),
                     reader.GetString(1),
-                    new List<string>()
+                    new List<string?>()
                 );
             }
 

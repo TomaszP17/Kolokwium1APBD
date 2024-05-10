@@ -24,7 +24,7 @@ public class BooksController(IDbService db) : ControllerBase
 
         if (!validate.IsValid)
         {
-            return ValidationProblem();
+            return ValidationProblem(); 
         }
 
         foreach (var genre in bookDto.Genres)
@@ -38,7 +38,7 @@ public class BooksController(IDbService db) : ControllerBase
         var result = await db.AddBookAsync(bookDto);
         if (result == -1)
         {
-            return StatusCode(500);
+            return StatusCode(500, bookDto);
         }
 
         var createdBook = await db.GetBookById(result);
