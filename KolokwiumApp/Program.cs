@@ -1,5 +1,6 @@
 using FluentValidation;
 using KolokwiumApp.Services;
+using KolokwiumApp.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IDbService, DbService>();
 builder.Services.AddSwaggerGen();
-builder.Services.AddValidatorsFromAssemblyContaining<validator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateBookValidator>();
 
 var app = builder.Build();
 
